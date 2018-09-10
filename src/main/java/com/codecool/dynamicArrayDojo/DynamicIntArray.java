@@ -52,7 +52,16 @@ public class DynamicIntArray {
     }
 
     public void insert(int insertPos, int number) {
-
+        if (insertPos <= numberArray.length - 1) {
+            int[] newNumberArray = new int[numberArray.length + 1];
+            int indexAfterInsertPos = insertPos + 1;
+            System.arraycopy(numberArray, 0, newNumberArray, 0, insertPos);
+            System.arraycopy(numberArray, insertPos, newNumberArray, indexAfterInsertPos, numberArray.length - insertPos);
+            newNumberArray[insertPos] = number;
+            numberArray = newNumberArray;
+        } else {
+            add(number);
+        }
     }
 
     public String toString() {
