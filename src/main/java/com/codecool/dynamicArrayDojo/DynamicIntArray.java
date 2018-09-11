@@ -14,30 +14,24 @@ public class DynamicIntArray {
     }
 
     public void add(int number) {
-        if (numberArray.length == 0) {
-            numberArray = new int[1];
-            numberArray[0] = number;
-        } else {
-            int[] newNumberArray = new int[numberArray.length + 1];
-            System.arraycopy(numberArray, 0, newNumberArray, 0, numberArray.length);
-            newNumberArray[numberArray.length] = number;
-            numberArray = newNumberArray;
-        }
+        int[] newNumberArray = new int[numberArray.length + 1];
+        System.arraycopy(numberArray, 0, newNumberArray, 0, numberArray.length);
+        newNumberArray[numberArray.length] = number;
+        numberArray = newNumberArray;
     }
 
 
     public void remove(int number) {
         int index = findNumberIndex(number);
         int[] newNumberArray = new int[numberArray.length - 1];
+
         if (index == 0) {
             System.arraycopy(numberArray, 1, newNumberArray, 0, numberArray.length - 1);
-            numberArray = newNumberArray;
         } else {
             System.arraycopy(numberArray, 0, newNumberArray, 0, index);
             System.arraycopy(numberArray, index + 1, newNumberArray, index, numberArray.length - (index + 1));
-            numberArray = newNumberArray;
-
         }
+        numberArray = newNumberArray;
     }
 
     private int findNumberIndex(int number) {
